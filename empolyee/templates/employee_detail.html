@@ -4,14 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ employee.name }} Details</title>
+    <style>
+        /* CSS for table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .attend-heading{
+            color:rgb(21, 61, 125);
+        }
+        
+    </style>
 </head>
 <body>
-    <h1>{{ employee.name }} Details</h1>
+    <h1>Employee Detail</h1>
+    <p><strong>Name: </strong>{{ employee.name }}</p>
     <p><strong>Designation:</strong> {{ employee.designation }}</p>
     <p><strong>Department:</strong> {{ employee.department }}</p>
     <p><strong>Date of Joining:</strong> {{ employee.date_of_joining }}</p>
 
-    <h2>Attendance Details</h2>
+    <h2 class="attend-heading">Attendance Details</h2>
     <table>
         <thead>
             <tr>
@@ -27,6 +48,9 @@
                 </tr>
             {% endfor %}
         </tbody>
+
     </table>
+
+   
 </body>
 </html>

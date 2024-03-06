@@ -3,14 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee List</title>
+    <title>HRMS</title>
+    <style>
+        /* CSS for table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .add-employee-btn{
+            background-color: rgb(21, 61, 125);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #ffffff;
+
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 20px;
+        }
+        .wlcm-title{
+            padding:30px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color:rgb(21, 61, 125);
+        }
+        .list-heading{
+            font-size: 25px;
+            padding-bottom: 20px;
+            font-weight: 600;
+
+        }
+        a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        .view-btn{
+                background-color:rgb(21, 61, 125);
+                width: 60px;
+                color: #ffffff !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px 5px;
+            
+     }
+    </style>
 </head>
 <body>
-    <h1>Employee List</h1>
-    <ul>
-        {% for employee in employees %}
-            <li>{{ employee.name }} - {{ employee.designation }} - {{ employee.department }} - {{ employee.date_of_joining }}</li>
-        {% endfor %}
-    </ul>
+    <h1 class="wlcm-title">Welcome to HRMS</h1>
+    <div class="list-heading"> Employees List</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Department</th>
+                <th>Date of Joining</th>
+                <th>View Attendance</th>
+                <th>Mark attendance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.designation }}</td>
+                <td>{{ employee.department }}</td>
+                <td>{{ employee.date_of_joining }}</td>
+                <td ><div class="view-btn"><a href="{% url 'employee_detail' employee.id %}">View</a></div></td>
+                <td ><div class="view-btn"><a href="{% url 'mark_attendance' employee.id %}">Mark</a></div></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="flex"><a href="{% url 'add_employee' %}"><button class="add-employee-btn">Add Employee</button></a></div>
+
 </body>
 </html>

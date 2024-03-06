@@ -9,12 +9,14 @@ class Employee(models.Model):
     is_present = models.BooleanField(default=False)
 
 
+    def __str__(self):
+        return self.name
+
 class Attendance(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     date = models.DateField()
     status = models.CharField(max_length=10, choices=(('Present', 'Present'), ('Absent', 'Absent')))
 
     def __str__(self):
-        return self.name
-    
+        return self.employee.name
 
