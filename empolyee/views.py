@@ -7,6 +7,8 @@ from .models import Employee , Attendance
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.urls import reverse
+from django.db.models import Count
+
 
 def home(request):
     employees = Employee.objects.all()
@@ -56,7 +58,7 @@ def employee_detail(request, employee_id):
     attendance_records = Attendance.objects.filter(employee=employee)
     return render(request, 'employee_detail.html', {'employee': employee, 'attendance_records': attendance_records})
 
-
+@csrf_exempt
 
 def mark_attendance(request, employee_id):
     if request.method == 'POST':
@@ -72,8 +74,14 @@ def mark_attendance(request, employee_id):
             defaults={'status': status}
         )
 
-        # Redirect to employee detail page with employee_id
-        return HttpResponseRedirect(reverse('employee_detail', kwargs={'employee_id': employee_id}))  
+         
     else:
         employee = Employee.objects.get(pk=employee_id)
-        return render(request, 'mark_attendance.html', {'employee': employee})
+        return render(request, 'mark_attendance.html', {'employee': employee, 'employee_id': employee_id})
+    
+
+
+
+def employee_department_report(request):
+    departments = Employee.objects.values('department').annotate(count=Count('department'))
+    return render(request, 'employee_department_report.html', {'departments': departments})

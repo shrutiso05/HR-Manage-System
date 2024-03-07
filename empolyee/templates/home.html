@@ -42,7 +42,7 @@
         }
         .list-heading{
             font-size: 25px;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
             font-weight: 600;
 
         }
@@ -58,13 +58,30 @@
                 justify-content: center;
                 align-items: center;
                 padding: 10px 5px;
-            
-     }
+            }
+            .view-report{
+                display: inline-block;
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+                margin: 2px 0;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+            .report-btn{
+                text-align: right; 
+                margin-right: 20px;
+                padding-top: 100px;
+            }
     </style>
 </head>
 <body>
     <h1 class="wlcm-title">Welcome to HRMS</h1>
     <div class="list-heading"> Employees List</div>
+    <div class="report-btn"><a href="{% url 'employee_department_report' %}" class="view-report">View Employee Department Report</a></div>
     <table>
         <thead>
             <tr>
@@ -91,6 +108,6 @@
     </table>
     
     <div class="flex"><a href="{% url 'add_employee' %}"><button class="add-employee-btn">Add Employee</button></a></div>
-
+    
 </body>
 </html>
